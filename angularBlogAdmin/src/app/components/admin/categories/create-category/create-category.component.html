@@ -1,0 +1,20 @@
+<div class="card col-9 shadow-lg">
+
+    <div class="card-header">
+        <div class="alert alert-danger" *ngIf="error" role="alert">{{error}}</div>
+        <h3 class="card-title">Создание категории</h3>
+    </div>
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()" class="row g-3 p-4">
+        <div class="col-12">
+            <label for="title" class="form-label">Название</label>
+            <input type="text" formControlName="title" class="form-control" [ngClass]="{'is-invalid': f.title.errors && f.title.touched }" id="title" name="title" >
+            <div *ngIf="f.title.touched && f.title.errors">
+                <small style="color: red">!!!Название категории обязательно!!!</small>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </div>
+    </form>
+</div>

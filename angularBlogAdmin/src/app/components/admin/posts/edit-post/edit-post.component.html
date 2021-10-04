@@ -1,0 +1,60 @@
+<div *ngIf=" dataDownload && post && categories else loading">
+    <div class="card col-9 shadow-lg">
+
+        <div class="card-header">
+            <div class="alert alert-danger" *ngIf="error" role="alert">{{error}}</div>
+            <h3 class="card-title">Редактирование поста</h3>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row g-3 p-4">
+            <div class="col-12">
+                <label for="title" class="form-label">Название</label>
+                <input type="text" formControlName="title" class="form-control" id="title" name="title" [ngClass]="{'is-invalid': f.title.errors && f.title.touched }"  >
+                <div *ngIf="f.title.touched && f.title.errors">
+                    <small style="color: red">!!!Название категории обязательно!!!</small>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="category_id">Категория</label>
+                <select class="form-control" formControlName="category_id" id="category_id" name="category_id" [ngClass]="{'is-invalid': f.category_id.errors && f.category_id.touched }">
+                    <option *ngFor="let category of categories" [selected]="category.id == post.category_id" [ngValue]="category.id">{{category.title}}</option>
+                </select>
+                <div *ngIf="f.category_id.touched && f.category_id.errors">
+                    <small style="color: red">!!! Категория обязательно!!!</small>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="content" class="form-label">Контент</label>
+                <textarea class="form-control" formControlName="content" name="content" id="content" rows="3" [ngClass]="{'is-invalid': f.content.errors && f.content.touched }"></textarea>
+                <div *ngIf="f.content.touched && f.content.errors">
+                    <small style="color: red">!!! Контент обязательно!!!</small>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="image">Изображение</label>
+                <div class="custom-file">
+                    <input type="file" (change)="onImage($event)" class="form-control" id="image" aria-label="file example">
+                </div>
+            </div>
+
+                        <div class="mt-3" *ngIf="imageUpload">
+                            <img [src]="imageUpload" width="80"  alt="">
+                        </div>
+                        <div class="mt-3" *ngIf="post && !imageUpload">
+                            <img src="{{ urlPath + (post.image ? post.image : 'no-Images.jpg')}}" width="80"  alt="">
+                        </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-template #loading>
+    <p class="text-center">Идёт загрузка ...</p>
+</ng-template>
+
+

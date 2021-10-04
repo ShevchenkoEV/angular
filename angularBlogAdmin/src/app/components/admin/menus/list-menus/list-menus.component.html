@@ -1,0 +1,40 @@
+<div class="card shadow-lg">
+    <div class="card-header">
+        <h3 class="card-title"> Список меню</h3>
+    </div>
+    <div class="card-body">
+        <div class="col-2">
+            <a class="btn btn-block btn-outline-primary mb-3" routerLink="create">Создать меню</a>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Название</th>
+                <th scope="col">path</th>
+                <th scope="col">path_api</th>
+                <th scope="col">type</th>
+                <th scope="col">сортировка</th>
+                <th scope="col">edit</th>
+                <th scope="col">delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let menu of menus">
+            <th scope="row">{{ menu.id}}</th>
+            <td>{{ menu.title}}</td>
+            <td>{{ menu.path }}</td>
+            <td>{{ menu.path_api }}</td>
+            <td>{{ menu.type }}</td>
+            <td>{{ menu.sort_order }}</td>
+                <td>
+                    <a [routerLink]="[menu.id, 'edit']" class="btn btn-warning">Изменить</a>
+                </td>
+                <td>
+                    <input type="button" value="Удалить" (click)="deleteMenu(menu.id)" class="btn btn-danger"/>
+                </td>
+            </tbody>
+
+        </table>
+    </div>
+</div>

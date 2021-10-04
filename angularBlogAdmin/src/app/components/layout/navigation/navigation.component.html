@@ -1,0 +1,19 @@
+<header class="p-3 bg-dark text-white mt-3 shadow-lg">
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <span class="fs-4 me-4">AngularBlogAdmin</span>
+
+                <li *ngFor="let item of navigation"  routerLinkActive="active">
+                    <a class="nav-link px-4 text-warning" [routerLink]="item.path_api">{{item.title}}</a>
+                </li>
+
+            </ul>
+            <div class="text-end">
+                <a *ngIf="hideItems" class="btn btn-outline-light me-2" routerLink="login">login</a>
+                <a *ngIf="hideItems" class="btn btn-warning me-2" routerLink="registration">Регистрация</a>
+                <a *ngIf="!hideItems" class="btn btn-warning me-2" routerLink="login">Выход</a>
+            </div>
+        </div>
+    </div>
+</header>

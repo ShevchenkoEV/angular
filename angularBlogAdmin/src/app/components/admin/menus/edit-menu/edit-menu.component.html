@@ -1,0 +1,65 @@
+<div *ngIf="form; else loading">
+    <div class="card col-9 shadow-lg">
+
+        <div class="card-header">
+            <div class="alert alert-danger" *ngIf="error" role="alert">{{error}}</div>
+            <h3 class="card-title">Редактирование категории</h3>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row g-3 p-4">
+            <div class="col-12">
+                <label for="title" class="form-label">Название</label>
+                <input type="text" formControlName="title" class="form-control" id="title" name="title"
+                       [ngClass]="{'is-invalid': f.title.errors && f.title.touched }" id="title" name="title" >
+                <div *ngIf="f.title.touched && f.title.errors">
+                    <small style="color: red">!!!Название обязательно!!!</small>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="path" class="form-label">Путь </label>
+                <input type="text" formControlName="path" class="form-control" id="path" name="path"
+                       [ngClass]="{'is-invalid': f.path.errors && f.path.touched }">
+                <div *ngIf="f.path.touched && f.path.errors">
+                    <small style="color: red">!!!Путь обязательно!!!</small>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="path_api" class="form-label">Путь для API</label>
+                <input type="text" formControlName="path_api" class="form-control" id="path_api" name="path_api"
+                       [ngClass]="{'is-invalid': f.path_api.errors && f.path_api.touched }" >
+                <div *ngIf="f.path_api.touched && f.path_api.errors">
+                    <small style="color: red">!!!Путь для api обязательно!!!</small>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="type" class="form-label">Тип</label>
+                <input type="text" formControlName="type" class="form-control" id="type" name="type"
+                       [ngClass]="{'is-invalid': f.type.errors && f.type.touched }">
+                <div *ngIf="f.type.touched && f.type.errors">
+                    <small style="color: red">!!!Поле "тип" обязательно!!!</small>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="sort_order" class="form-label">сортировка</label>
+                <input type="text" formControlName="sort_order" class="form-control" id="sort_order" name="sort_order"
+                       [ngClass]="{'is-invalid': f.sort_order.errors && f.sort_order.touched }">
+                <div *ngIf="f.sort_order.touched && f.sort_order.errors">
+                    <small style="color: red">!!!Поле "сортировка" обязательно!!!</small>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-template #loading>
+    <p class="text-center">Идёт загрузка ...</p>
+</ng-template>
+
+
